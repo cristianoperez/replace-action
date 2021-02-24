@@ -18,7 +18,7 @@ jobs:
         uses: mad9000/actions-find-and-replace-string@1
         id: findandreplace
         with:
-          source: ${{ steps.findandreplace.outputs.value }}
+          source: ${{ github.ref }}
           find: 'PROJECT_NAME'
           replace: ${{ github.event.inputs.project_name }}
       - name: Get the final output
