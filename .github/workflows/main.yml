@@ -16,8 +16,8 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@master
         id: findandreplace2
         with:
-          find: "cacilds"
-          replace: "banana"
+          find: "${PROJECT_NAME}"
+          replace: ${{ github.event.inputs.project_name }}
       - name: Get the final output
         run: echo "The replaced value is ${{ steps.findandreplace2.outputs.modifiedFiles }}"
       - uses: EndBug/add-and-commit@v7.0.0
