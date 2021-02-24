@@ -8,18 +8,12 @@ on:
         required: true
         
 jobs:
-  find-and-replace-job:
+  build:
     runs-on: ubuntu-latest
-    name: 'Find and replace on a string'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Run find-and-replace to remove slashes
-        uses: mad9000/actions-find-and-replace-string@1
-        id: findandreplace
+      - uses: actions/checkout@v2
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@master
         with:
-          source: ${{ github.ref }}
-          find: 'PROJECT_NAME'
-          replace: ${{ github.event.inputs.project_name }}
-      - name: Get the final output
-        run: echo "The replaced value is ${{ steps.findandreplace.outputs.value }}"
+          find: "${PROJECT_NAME}"
+          replace: "banana"
