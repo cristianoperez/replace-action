@@ -20,6 +20,6 @@ jobs:
         with:
           source: ${{ steps.findandreplace.outputs.value }}
           find: '${PROJECT_NAME}'
-          replace: ${{ github.event.inputs.job_name }}
+          replace: ${{ github.event.inputs.project_name }}
       - name: Get the final output
         run: echo "The replaced value is ${{ steps.findandreplace.outputs.value }}"
