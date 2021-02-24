@@ -1,0 +1,25 @@
+name: Setup project
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_name:
+        description: 'Project name'
+        required: true
+        
+jobs:
+  find-and-replace-job:
+    runs-on: ubuntu-latest
+    name: 'Find and replace on a string'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run find-and-replace to remove slashes
+        uses: mad9000/actions-find-and-replace-string@1
+        id: findandreplace
+        with:
+          source: ${{ steps.findandreplace.outputs.value }}
+          find: '${PROJECT_NAME}'
+          replace: ${{ github.event.inputs.job_name }}
+      - name: Get the final output
+        run: echo "The replaced value is ${{ steps.findandreplace.outputs.value }}"
